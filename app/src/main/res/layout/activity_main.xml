@@ -2,38 +2,52 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/common"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="#000000">
+    android:background="#000000"
+    tools:context=".MainActivity">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
         android:id="@+id/imageView"
-        android:src="@drawable/myrestaurant"
-        android:scaleType="centerCrop" />
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/mres2" />
+
 
     <TextView
+        android:id="@+id/appNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="MyRestaurants"
-        android:layout_marginTop="35dp"
-        android:id="@+id/appNameTextView"
-        android:textColor="@color/colorTextIcons"
-        android:textSize="40sp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
+        android:text="MyRestaurants"
+        android:textColor="#FFFFFFFF"
+        android:textSize="40sp"
         android:textStyle="bold" />
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/locationEditText"
+        android:background="#FF03DAC5"
+        android:layout_above="@+id/findRestaurantsButton"
+        android:layout_marginBottom="50dp"
+        android:padding="7dp"
+        android:hint="Enter Zip Code"
+        android:layout_centerHorizontal="true" />
+
     <Button
+        android:id="@+id/findRestaurantsButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Find Restaurants"
-        android:id="@+id/findRestaurantsButton"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:background="@color/colorAccent"
-        android:textColor="@color/colorTextIcons" />
+        android:background="#FF3700B3"
+        android:text="Find Restaurants"
+        android:textColor="#FFFFFFFF" />
+
 
 </RelativeLayout>
