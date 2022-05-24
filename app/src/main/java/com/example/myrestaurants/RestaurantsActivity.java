@@ -23,6 +23,7 @@ public class RestaurantsActivity extends AppCompatActivity {
             "Slappy Cakes", "Equinox", "Miss Delta's", "Andina",
             "Lardo", "Portland City Grill", "Fat Head's Brewery",
             "Chipotle", "Subway"};
+    private String[] cuisines = new String[] {"Vegan Food", "Breakfast", "Fishs Dishs", "Scandinavian", "Coffee", "English Food", "Burgers", "Fast Food", "Noodle Soups", "Mexican", "BBQ", "Cuban", "Bar Food", "Sports Bar", "Breakfast", "Mexican" };
 //    public static final String TAG = RestaurantActivity.class.getSimpleName();
 
     @Override
@@ -30,8 +31,7 @@ public class RestaurantsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurants);
         ButterKnife.bind(this);
-
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, restaurants);
+        MyRestaurantsArrayAdapter adapter = new MyRestaurantsArrayAdapter(this, android.R.layout.simple_list_item_1, restaurants, cuisines); // the arguments must match constructor's parameters!
         mListView.setAdapter(adapter);
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -40,13 +40,16 @@ public class RestaurantsActivity extends AppCompatActivity {
                 String restaurant = ((TextView)view).getText().toString();
                 Log.v("RestaurantsActivity", "In the onItemClickListener!");
                 Toast.makeText(RestaurantsActivity.this, restaurant, Toast.LENGTH_LONG).show();
+
             }
+
         });
 
         Intent intent = getIntent();
         String location = intent.getStringExtra("location");
         mLocationTextView.setText("Here are all the restaurants near: " + location);
 //        Log.d(TAG, "In the onCreate method!");
+
 
     }
 }
