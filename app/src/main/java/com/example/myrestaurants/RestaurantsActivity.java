@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -29,14 +30,21 @@ public class RestaurantsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);//will hide the title
+        getSupportActionBar().hide(); //hide the title bar
         setContentView(R.layout.activity_restaurants);
         ButterKnife.bind(this);
+
+        Intent intent = getIntent();
+        String location = intent.getStringExtra("location");
+        mLocationTextView.setText("Here are all the restaurants near: " + location);
         MyRestaurantsArrayAdapter adapter = new MyRestaurantsArrayAdapter(this, android.R.layout.simple_list_item_1, restaurants, cuisines); // the arguments must match constructor's parameters!
         mListView.setAdapter(adapter);
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+
                 String restaurant = ((TextView)view).getText().toString();
                 Log.v("RestaurantsActivity", "In the onItemClickListener!");
                 Toast.makeText(RestaurantsActivity.this, restaurant, Toast.LENGTH_LONG).show();
@@ -44,10 +52,10 @@ public class RestaurantsActivity extends AppCompatActivity {
             }
 
         });
-
-        Intent intent = getIntent();
-        String location = intent.getStringExtra("location");
-        mLocationTextView.setText("Here are all the restaurants near: " + location);
+//
+//        Intent intent = getIntent();
+//        String location = intent.getStringExtra("location");
+//        mLocationTextView.setText("Here are all the restaurants near: " + location);
 //        Log.d(TAG, "In the onCreate method!");
 
 

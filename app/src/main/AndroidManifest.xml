@@ -8,6 +8,7 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
+
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyRestaurants"
@@ -15,21 +16,15 @@
 <!--        android:label="@string/app_name"-->
         <activity
             android:name=".RestaurantsActivity"
-            android:exported="false">
+            android:exported="true">
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value="com.example.myrestaurants.MainActivity">
         </meta-data>
-<!--        <activity-->
-<!--            android:name=".RestaurantsActivity">-->
-<!--            <meta-data-->
-<!--                android:name="android.support.PARENT_ACTIVITY"-->
-<!--                android:value="com.example.myrestaurants.MainActivity">-->
-<!--            </meta-data>-->
-<!--        </activity>-->
         </activity>
         <activity
             android:name=".MainActivity"
+            android:theme="@style/NoActionBarTheme"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
