@@ -14,14 +14,20 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myrestaurants.models.Business;
+import com.example.myrestaurants.models.Category;
+import com.example.myrestaurants.models.YelpBusinessesSearchResponse;
+import com.example.myrestaurants.network.YelpApi;
+import com.example.myrestaurants.network.YelpClient;
+
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 //import okhttp3.Callback;
-import okhttp3.Response;
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RestaurantsActivity extends AppCompatActivity {
     @BindView(R.id.locationTextView) TextView mLocationTextView;
@@ -59,7 +65,7 @@ public class RestaurantsActivity extends AppCompatActivity {
 
         call.enqueue(new Callback<YelpBusinessesSearchResponse>() {
             @Override
-            public void onResponse(Call<YelpBusinessesSearchResponse> call, retrofit2.Response<YelpBusinessesSearchResponse> response) {
+            public void onResponse(Call<YelpBusinessesSearchResponse> call, Response<YelpBusinessesSearchResponse> response) {
                     if (response.isSuccessful()) {
                         List<Business> restaurantsList = response.body().getBusinesses();
                         String[] restaurants = new String[restaurantsList.size()];
@@ -76,11 +82,9 @@ public class RestaurantsActivity extends AppCompatActivity {
                         ArrayAdapter adapter = new MyRestaurantsArrayAdapter(RestaurantsActivity.this, android.R.layout.simple_list_item_1, restaurants, categories);
                         mListView.setAdapter(adapter);
                         showRestaurants();
-                    } else {
-                        showUnsuccessfulMessage();
                     }
-                }
 
+                }
 
             @Override
             public void onFailure(Call<YelpBusinessesSearchResponse> call, Throwable t) {

@@ -1,4 +1,4 @@
-package com.example.myrestaurants;
+package com.example.myrestaurants.network;
 
 import static com.example.myrestaurants.Constants.YELP_API_KEY;
 import static com.example.myrestaurants.Constants.YELP_BASE_URL;
@@ -14,7 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class YelpClient {
 
-    private static Retrofit retrofit = null;
+    private static Retrofit retrofit;
 
     public static YelpApi getClient() {
 
