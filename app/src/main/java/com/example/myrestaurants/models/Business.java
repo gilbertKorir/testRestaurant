@@ -2,8 +2,7 @@
 package com.example.myrestaurants.models;
 
 import java.util.List;
-//import javax.annotation.Generated;
-import javax.annotation.Generated;
+//import javax.annotation.Generate
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
