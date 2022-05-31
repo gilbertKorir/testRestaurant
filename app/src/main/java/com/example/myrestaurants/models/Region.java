@@ -7,7 +7,6 @@ import com.google.gson.annotations.SerializedName;
 
 import javax.annotation.Generated;
 
-@Generated("jsonschema2pojo")
 public class Region {
 
     @SerializedName("center")

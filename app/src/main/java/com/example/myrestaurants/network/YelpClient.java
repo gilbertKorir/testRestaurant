@@ -14,7 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class YelpClient {
 
-    private static Retrofit retrofit;
+    private static Retrofit retrofit = null;
 
     public static YelpApi getClient() {
 

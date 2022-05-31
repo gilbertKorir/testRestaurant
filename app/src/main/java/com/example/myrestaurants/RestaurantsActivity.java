@@ -44,9 +44,6 @@ public class RestaurantsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_restaurants);
         ButterKnife.bind(this);
 
-        Intent intent = getIntent();
-        String location = intent.getStringExtra("location");
-        mLocationTextView.setText("Here are all the restaurants near: " + location);
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -57,15 +54,17 @@ public class RestaurantsActivity extends AppCompatActivity {
 
             }
         });
-
+        Intent intent = getIntent();
+        String location = intent.getStringExtra("location");
+        mLocationTextView.setText("Here are all the restaurants near: " + location);
         //callback method
-
         YelpApi client = YelpClient.getClient();
         Call<YelpBusinessesSearchResponse> call = client.getRestaurants(location, "restaurants");
 
         call.enqueue(new Callback<YelpBusinessesSearchResponse>() {
             @Override
             public void onResponse(Call<YelpBusinessesSearchResponse> call, Response<YelpBusinessesSearchResponse> response) {
+                     hideProgressBar();
                     if (response.isSuccessful()) {
                         List<Business> restaurantsList = response.body().getBusinesses();
                         String[] restaurants = new String[restaurantsList.size()];
@@ -83,9 +82,10 @@ public class RestaurantsActivity extends AppCompatActivity {
                         mListView.setAdapter(adapter);
                         showRestaurants();
                     }
-
+                    else{
+                        showUnsuccessfulMessage();
                 }
-
+                }
             @Override
             public void onFailure(Call<YelpBusinessesSearchResponse> call, Throwable t) {
                 Log.e("Error Message", "onFailure: ",t );
