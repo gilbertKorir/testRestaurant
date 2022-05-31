@@ -3,31 +3,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.myrestaurants">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
-
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyRestaurants"
         tools:targetApi="31">
-<!--        android:label="@string/app_name"-->
         <activity
-            android:name=".RestaurantsActivity"
+            android:name=".RestaurantDetailActivity"
+            android:exported="false" />
+        <!-- android:label="@string/app_name" -->
+        <activity
+            android:name=".RestaurantListActivity"
             android:exported="true">
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.example.myrestaurants.MainActivity">
-        </meta-data>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.myrestaurants.MainActivity"></meta-data>
         </activity>
         <activity
             android:name=".MainActivity"
-            android:theme="@style/NoActionBarTheme"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/NoActionBarTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

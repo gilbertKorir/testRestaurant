@@ -2,10 +2,14 @@
 package com.example.myrestaurants.models;
 
 //import javax.annotation.Generated;
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import org.parceler.Parcel;
 
+@Parcel
 public class Location {
 
     @SerializedName("city")
@@ -29,6 +33,12 @@ public class Location {
     @SerializedName("zip_code")
     @Expose
     private String zipCode;
+
+    @NonNull
+    @Override
+    public String toString() {
+        return String.format("%s, %s, %s %s", this.address1, this.city, this.state, this.zipCode);
+    }
 
     /**
      * No args constructor for use in serialization
