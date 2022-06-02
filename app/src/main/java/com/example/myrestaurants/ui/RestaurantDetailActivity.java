@@ -3,6 +3,7 @@ package com.example.myrestaurants.ui;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
+//import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 
@@ -11,6 +12,7 @@ import com.example.myrestaurants.adapters.RestaurantPagerAdapter;
 import com.example.myrestaurants.models.Business;
 
 import org.parceler.Parcels;
+//import android.support.view.ViewPager;
 
 import java.util.List;
 
@@ -19,7 +21,9 @@ import butterknife.ButterKnife;
 
 public class RestaurantDetailActivity extends AppCompatActivity {
     @BindView(R.id.viewPager) ViewPager mViewPager;
+
     private RestaurantPagerAdapter adapterViewPager;
+
     List<Business> mRestaurants;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

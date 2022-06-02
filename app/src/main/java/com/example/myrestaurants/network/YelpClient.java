@@ -37,7 +37,6 @@ public class YelpClient {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
-
         return retrofit.create(YelpApi.class);
     }
 }
