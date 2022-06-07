@@ -80,7 +80,6 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
             intent.putExtra("position", itemPosition);
             intent.putExtra("restaurants", Parcels.wrap(mRestaurants));
             mContext.startActivity(intent);
-
         }
     }
 }

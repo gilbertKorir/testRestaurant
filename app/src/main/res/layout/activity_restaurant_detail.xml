@@ -15,8 +15,8 @@
             android:id="@+id/pagerHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="4dp"
-            android:paddingTop="4dp" />
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp" />
 
     </androidx.viewpager.widget.ViewPager>
 
