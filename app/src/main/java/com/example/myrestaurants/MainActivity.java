@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //    private SharedPreferences mSharedPreferences;
 //    private SharedPreferences.Editor mEditor;
 private DatabaseReference mSearchedLocationReference;
+private ValueEventListener mSearchedLocationReferenceListener;
 
     @BindView(R.id.findRestaurantsButton) Button mFindRestaurantsButton;
     @BindView(R.id.locationEditText) EditText mLocationEditText;
@@ -38,9 +39,11 @@ private DatabaseReference mSearchedLocationReference;
                 .getInstance()
                 .getReference()
                 .child(Constants.FIREBASE_CHILD_SEARCHED_LOCATION);
-        mSearchedLocationReference.addValueEventListener(new ValueEventListener() {
+        mSearchedLocationReferenceListener = mSearchedLocationReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {//something changed!
+                //   code here is executed when Firebase recognizes a change made to the
+                //   node being listened to, and provides a new dataSnapshot.
                 for (DataSnapshot locationSnapshot : dataSnapshot.getChildren()) {
                     String location = locationSnapshot.getValue().toString();
                     Log.d("Locations updated", "location: " + location); //log
@@ -53,6 +56,7 @@ private DatabaseReference mSearchedLocationReference;
             } //attach listener
 
         });
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
@@ -83,4 +87,12 @@ private DatabaseReference mSearchedLocationReference;
 //    private void addToSharedPreferences(String location) {
 //        mEditor.putString(Constants.PREFERENCES_LOCATION_KEY, location).apply();
 //    }
+
+    @Override
+    protected void onDestroy() {
+        //    defined in 'top level' of activity, not nested within another block.
+        //    code here is executed when the user quits the activity.
+        super.onDestroy();
+        mSearchedLocationReference.removeEventListener(mSearchedLocationReferenceListener);
+    }
 }
