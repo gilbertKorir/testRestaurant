@@ -33,9 +33,8 @@ public class RestaurantListActivity extends AppCompatActivity {
 //    @BindView(R.id.listView) ListView mListView;
 
     private static final String TAG = RestaurantListActivity.class.getSimpleName();
-    private SharedPreferences mSharedPreferences;
-    private String mRecentAddress;
-
+//    private SharedPreferences mSharedPreferences;
+//    private String mRecentAddress;
     @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
     @BindView(R.id.errorTextView) TextView mErrorTextView;
     @BindView(R.id.progressBar) ProgressBar mProgressBar;
@@ -51,8 +50,8 @@ public class RestaurantListActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 //        String location = intent.getStringExtra("location");
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
+//        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
 
         // We are changing the **String location = intent.getStringExtra("location");**  location variable to use the value stored in the sharedPreferences  **String location = mRecentAddress**  as shown below
         String location = intent.getStringExtra("location");

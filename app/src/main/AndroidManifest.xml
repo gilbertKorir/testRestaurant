@@ -15,12 +15,14 @@
         android:theme="@style/Theme.MyRestaurants"
         tools:targetApi="31">
         <activity android:name=".ui.RestaurantDetailActivity"></activity>
+
          <activity
              android:name=".RestaurantListActivity"
             android:exported="true">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.myrestaurants.MainActivity"></meta-data>
+                android:value="com.example.myrestaurants.MainActivity">
+            </meta-data>
         </activity>
 
         <activity
