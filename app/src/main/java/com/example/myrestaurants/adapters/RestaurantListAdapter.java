@@ -70,11 +70,10 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
             mNameTextView.setText(restaurant.getName());
             mCategoryTextView.setText(restaurant.getCategories().get(0).getTitle());
             mRatingTextView.setText("Rating: " + restaurant.getRating() + "/5");
-
         }
-
         @Override
         public void onClick(View v) {
+            //clicking individual restaurant
             int itemPosition = getLayoutPosition();
             Intent intent = new Intent(mContext, RestaurantDetailActivity.class);
             intent.putExtra("position", itemPosition);
