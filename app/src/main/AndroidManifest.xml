@@ -15,7 +15,7 @@
         android:theme="@style/Theme.MyRestaurants"
         tools:targetApi="31">
         <activity
-            android:name=".SavedRestaurantListActivity"
+            android:name=".ui.SavedRestaurantListActivity"
             android:exported="false" />
         <activity android:name=".ui.RestaurantDetailActivity" />
         <activity
