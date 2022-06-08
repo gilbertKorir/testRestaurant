@@ -16,6 +16,9 @@
         android:theme="@style/Theme.MyRestaurants"
         tools:targetApi="31">
         <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.CreateAccountActivity"
             android:exported="false" />
         <activity
@@ -27,7 +30,7 @@
             android:exported="true">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.myrestaurants.MainActivity"></meta-data>
+                android:value="com.example.myrestaurants.MainActivity" />
         </activity>
         <activity
             android:name=".MainActivity"
