@@ -65,6 +65,24 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
+        <ProgressBar
+        android:id="@+id/firebaseProgressBar"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/loadingTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_below="@+id/firebaseProgressBar"
+            android:textColor="@color/white"
+            android:layout_margin="20dp"
+            />
+
+
     </LinearLayout>
 
     <TextView
@@ -75,5 +93,6 @@
         android:text="Login"
         android:textSize="30dp"
         android:textStyle="bold" />
+
 
 </RelativeLayout>
