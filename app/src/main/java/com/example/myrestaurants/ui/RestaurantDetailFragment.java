@@ -126,9 +126,11 @@ public class RestaurantDetailFragment extends Fragment implements View.OnClickLi
         if (v == mSaveRestaurantButton) {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             String uid = user.getUid();
+
             DatabaseReference restaurantRef = FirebaseDatabase
                     .getInstance()
-                    .getReference(Constants.FIREBASE_CHILD_RESTAURANTS);
+                    .getReference(Constants.FIREBASE_CHILD_RESTAURANTS)
+                    .child(uid);
 
             DatabaseReference pushRef = restaurantRef.push();
             String pushId = pushRef.getKey();
