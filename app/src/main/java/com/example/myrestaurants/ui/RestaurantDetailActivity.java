@@ -20,8 +20,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class RestaurantDetailActivity extends AppCompatActivity {
-    @BindView(R.id.viewPager) ViewPager mViewPager;
 
+    @BindView(R.id.viewPager) ViewPager mViewPager;
     private RestaurantPagerAdapter adapterViewPager;
     List<Business> mRestaurants;
 

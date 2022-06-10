@@ -79,8 +79,7 @@
             android:layout_centerInParent="true"
             android:layout_below="@+id/firebaseProgressBar"
             android:textColor="@color/white"
-            android:layout_margin="20dp"
-            />
+            android:layout_margin="20dp" />
 
 
     </LinearLayout>
