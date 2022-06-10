@@ -23,8 +23,8 @@ public class RestaurantDetailActivity extends AppCompatActivity {
     @BindView(R.id.viewPager) ViewPager mViewPager;
 
     private RestaurantPagerAdapter adapterViewPager;
-
     List<Business> mRestaurants;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

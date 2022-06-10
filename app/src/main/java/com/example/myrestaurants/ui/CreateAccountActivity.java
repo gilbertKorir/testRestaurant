@@ -17,6 +17,7 @@ import com.example.myrestaurants.MainActivity;
 import com.example.myrestaurants.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -31,7 +32,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
     public static final String TAG = CreateAccountActivity.class.getSimpleName();
 
     @BindView(R.id.createUserButton) Button mCreateUserButton;
-    @BindView(R.id.nameEditText) EditText mNameEditText;
+    @BindView(R.id.nameEditText) TextInputLayout mNameEditText;
     @BindView(R.id.emailEditText) EditText mEmailEditText;
     @BindView(R.id.passwordEditText) EditText mPasswordEditText;
     @BindView(R.id.confirmPasswordEditText) EditText mConfirmPasswordEditText;
@@ -40,7 +41,6 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
     @BindView(R.id.loadingTextView) TextView mLoadingSignUp;
 
     private String mName;
-
     private FirebaseAuth mAuth; // register
     private FirebaseAuth.AuthStateListener mAuthListener; //authenticate
 
@@ -74,10 +74,11 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
 //create user
     private void createNewUser() {
 
-        mName = mNameEditText.getText().toString().trim();
+        mName = mNameEditText.getEditText().getText().toString().trim();
 
-        final String name = mNameEditText.getText().toString().trim();
+        final String name = mNameEditText.getEditText().getText().toString().trim();
         final String email = mEmailEditText.getText().toString().trim();
+        
         String password = mPasswordEditText.getText().toString().trim();
         String confirmPassword = mConfirmPasswordEditText.getText().toString().trim();
 

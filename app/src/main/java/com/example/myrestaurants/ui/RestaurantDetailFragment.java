@@ -47,7 +47,6 @@ public class RestaurantDetailFragment extends Fragment implements View.OnClickLi
     @BindView(R.id.addressTextView) TextView mAddressLabel;
     @BindView(R.id.saveRestaurantButton) TextView mSaveRestaurantButton;
 
-
     private Business mRestaurant;
 
 
@@ -55,14 +54,6 @@ public class RestaurantDetailFragment extends Fragment implements View.OnClickLi
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param restaurant Parameter 1.
-     * @return A new instance of fragment RestaurantDetailFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static RestaurantDetailFragment newInstance(Business restaurant) {
         RestaurantDetailFragment restaurantDetailFragment = new RestaurantDetailFragment();
         Bundle args = new Bundle();
@@ -100,7 +91,6 @@ public class RestaurantDetailFragment extends Fragment implements View.OnClickLi
         mWebsiteLabel.setOnClickListener(this);
         mPhoneLabel.setOnClickListener(this);
         mAddressLabel.setOnClickListener(this);
-
         mSaveRestaurantButton.setOnClickListener(this);
         return view;
 
