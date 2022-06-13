@@ -43,7 +43,6 @@ public class FirebaseRestaurantViewHolder extends RecyclerView.ViewHolder implem
         TextView ratingTextView = (TextView) mView.findViewById(R.id.ratingTextView);
 
         Picasso.get().load(restaurant.getImageUrl()).into(restaurantImageView);
-
         nameTextView.setText(restaurant.getName());
         categoryTextView.setText(restaurant.getCategories().get(0).getTitle());
         ratingTextView.setText("Rating: " + restaurant.getRating() + "/5");
@@ -72,7 +71,6 @@ public class FirebaseRestaurantViewHolder extends RecyclerView.ViewHolder implem
                 mContext.startActivity(intent);
 
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
