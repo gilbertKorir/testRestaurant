@@ -2,6 +2,7 @@ package com.example.myrestaurants.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,21 +15,27 @@ import android.widget.TextView;
 
 import com.example.myrestaurants.Constants;
 import com.example.myrestaurants.R;
+import com.example.myrestaurants.adapters.FirebaseRestaurantListAdapter;
 import com.example.myrestaurants.adapters.FirebaseRestaurantViewHolder;
 import com.example.myrestaurants.models.Business;
+import com.example.myrestaurants.models.Restaurant;
+import com.example.myrestaurants.utils.OnStartDragListener;
+import com.example.myrestaurants.utils.SimpleItemTouchHelperCallback;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class SavedRestaurantListActivity extends AppCompatActivity {
+public class SavedRestaurantListActivity extends AppCompatActivity implements OnStartDragListener {
     private DatabaseReference mRestaurantReference;
-    private FirebaseRecyclerAdapter<Business, FirebaseRestaurantViewHolder> mFirebaseAdapter;
+    private FirebaseRestaurantListAdapter mFirebaseAdapter;
+    private ItemTouchHelper mItemTouchHelper;
 
     @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
     @BindView(R.id.errorTextView) TextView mErrorTextView;
@@ -42,39 +49,34 @@ public class SavedRestaurantListActivity extends AppCompatActivity {
 
 //        mRestaurantReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_RESTAURANTS);
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String uid = user.getUid();
-
-        mRestaurantReference = FirebaseDatabase
-                .getInstance()
-                .getReference(Constants.FIREBASE_CHILD_RESTAURANTS)
-                .child(uid);
-
+//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//        String uid = user.getUid();
+//
+//        mRestaurantReference = FirebaseDatabase
+//                .getInstance()
+//                .getReference(Constants.FIREBASE_CHILD_RESTAURANTS)
+//                .child(uid);
         setUpFirebaseAdapter();
         hideProgressBar();
         showRestaurants();
     }
     private void setUpFirebaseAdapter(){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
+
+        mRestaurantReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_RESTAURANTS);
         FirebaseRecyclerOptions<Business> options =
                 new FirebaseRecyclerOptions.Builder<Business>()
                         .setQuery(mRestaurantReference, Business.class)
                         .build();
 
-        mFirebaseAdapter = new FirebaseRecyclerAdapter<Business, FirebaseRestaurantViewHolder>(options) {
-            @NonNull
-            @Override
-            public FirebaseRestaurantViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.restaurant_list_item_drag, parent, false);
-                return new FirebaseRestaurantViewHolder(view);
-            }
-
-            @Override
-            protected void onBindViewHolder(@NonNull FirebaseRestaurantViewHolder firebaseRestaurantViewHolder, int position, @NonNull Business restaurant) {
-                firebaseRestaurantViewHolder.bindRestaurant(restaurant);
-            }
-        };
+        mFirebaseAdapter = new FirebaseRestaurantListAdapter(options, mRestaurantReference, (OnStartDragListener) this, this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mFirebaseAdapter);
+        mRecyclerView.setHasFixedSize(true);
+        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mFirebaseAdapter);
+        mItemTouchHelper = new ItemTouchHelper(callback);
+        mItemTouchHelper.attachToRecyclerView(mRecyclerView);
     }
     @Override
     protected void onStart() {
@@ -89,6 +91,9 @@ public class SavedRestaurantListActivity extends AppCompatActivity {
             mFirebaseAdapter.stopListening();
         }
     }
+    public void onStartDrag(RecyclerView.ViewHolder viewHolder){
+        mItemTouchHelper.startDrag(viewHolder);
+    }
 
     private void showRestaurants() {
         mRecyclerView.setVisibility(View.VISIBLE);
@@ -96,5 +101,10 @@ public class SavedRestaurantListActivity extends AppCompatActivity {
 
     private void hideProgressBar() {
         mProgressBar.setVisibility(View.GONE);
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mFirebaseAdapter.stopListening();
     }
 }

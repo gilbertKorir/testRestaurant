@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myrestaurants.Constants;
 import com.example.myrestaurants.R;
 import com.example.myrestaurants.models.Business;
+import com.example.myrestaurants.models.Restaurant;
 import com.example.myrestaurants.ui.RestaurantDetailActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -28,6 +29,10 @@ import java.util.ArrayList;
 
 public class FirebaseRestaurantViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+    private static final int MAX_WIDTH = 200;
+    private static final int MAX_HEIGHT = 200;
+
+    public ImageView mRestaurantImageView;
     View mView;
     Context mContext;
     public FirebaseRestaurantViewHolder(View itemView) {
@@ -37,14 +42,16 @@ public class FirebaseRestaurantViewHolder extends RecyclerView.ViewHolder implem
         itemView.setOnClickListener(this);
     }
     public void bindRestaurant(Business restaurant) {
-        ImageView restaurantImageView = (ImageView) mView.findViewById(R.id.restaurantImageView);
+        mRestaurantImageView = (ImageView) mView.findViewById(R.id.restaurantImageView);
+//        ImageView restaurantImageView = (ImageView) mView.findViewById(R.id.restaurantImageView);
         TextView nameTextView = (TextView) mView.findViewById(R.id.restaurantNameTextView);
         TextView categoryTextView = (TextView) mView.findViewById(R.id.categoryTextView);
         TextView ratingTextView = (TextView) mView.findViewById(R.id.ratingTextView);
 
-        Picasso.get().load(restaurant.getImageUrl()).into(restaurantImageView);
+        Picasso.get().load(restaurant.getImageUrl()).into(mRestaurantImageView);
+//        Picasso.get().load(restaurant.getImageUrl()).into(restaurantImageView);
         nameTextView.setText(restaurant.getName());
-        categoryTextView.setText(restaurant.getCategories().get(0).getTitle());
+//        categoryTextView.setText(restaurant.getCategories().get(0));
         ratingTextView.setText("Rating: " + restaurant.getRating() + "/5");
     }
 
