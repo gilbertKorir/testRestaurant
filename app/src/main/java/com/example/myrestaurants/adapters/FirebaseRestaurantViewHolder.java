@@ -51,7 +51,7 @@ public class FirebaseRestaurantViewHolder extends RecyclerView.ViewHolder implem
         Picasso.get().load(restaurant.getImageUrl()).into(mRestaurantImageView);
 //        Picasso.get().load(restaurant.getImageUrl()).into(restaurantImageView);
         nameTextView.setText(restaurant.getName());
-//        categoryTextView.setText(restaurant.getCategories().get(0));
+//        categoryTextView.setText(restaurant.getCategories().get(0).getTitle());
         ratingTextView.setText("Rating: " + restaurant.getRating() + "/5");
     }
 
